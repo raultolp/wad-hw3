@@ -77,8 +77,8 @@
                     </div>
                 </div>
                 <div class="controls">
-                    <button id="profile-button" class="pill active">Profile</button>
-                    <button id="courses-button" class="pill">Courses</button>
+                    <button id="profile-button" class="pill active" @click="togglePanel($event)">Profile</button>
+                    <button id="courses-button" class="pill" @click="togglePanel($event)">Courses</button>
                 </div>
             </section>
         </section>
@@ -96,10 +96,34 @@
 </template>
 
 <script>
+    // import Course from './models/Course'
+    // import User from './models/User'
 
     export default {
         name: 'app',
-        components: {}
+        components: { },
+        // components: {
+        //     // Course,
+        //     // User
+        // },
+        // data: {
+        //
+        // },
+        methods: {
+            togglePanel: function(event) {
+                if (event.id === "profile-button") {
+                    this.id["profile-button"].className = "pill";
+                    this.id["courses-button"].className = "pill active";
+                    this.id["profile-container"].className = "tab";
+                    this.id["courses-container"].className = "tab active";
+                } else {
+                    this.id["profile-button"].className = "pill active";
+                    this.id["courses-button"].className = "pill";
+                    this.id["profile-container"].className = "tab active";
+                    this.id["courses-container"].className = "tab";
+                }
+            }
+        }
     }
 </script>
 
