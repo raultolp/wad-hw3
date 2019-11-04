@@ -6,7 +6,7 @@
         <section id="container">
             <section id="main">
                 <div class="content">
-                    <div id="profile-container" class="tab active">
+                    <div id="profile-container" :class="{active: this.activeTab === 'profile'}" class="tab">
                         <div id="profile">
                             <div class="avatar">
                                 <img src="./assets/me.png" id="picture" alt="My picture">
@@ -24,7 +24,7 @@
                             <div class="clear-fix"></div>
                         </div>
                     </div>
-                    <div id="courses-container" class="tab">
+                    <div id="courses-container" :class="{active: this.activeTab === 'courses'}" class="tab">
                         <h1 class="title">Courses</h1>
                         <table id="courses">
                             <thead>
@@ -77,8 +77,8 @@
                     </div>
                 </div>
                 <div class="controls">
-                    <button id="profile-button" class="pill active" @click="togglePanel($event)">Profile</button>
-                    <button id="courses-button" class="pill" @click="togglePanel($event)">Courses</button>
+                    <button id="profile-button" :class="{active: this.activeTab === 'profile'}" class="pill" @click="togglePanel('profile')">Profile</button>
+                    <button id="courses-button" :class="{active: this.activeTab === 'courses'}" class="pill" @click="togglePanel('courses')">Courses</button>
                 </div>
             </section>
         </section>
@@ -106,22 +106,14 @@
         //     // Course,
         //     // User
         // },
-        // data: {
-        //
-        // },
+        data: function() {
+            return {
+                activeTab:"profile"
+            }
+        },
         methods: {
-            togglePanel: function(event) {
-                if (event.id === "profile-button") {
-                    this.id["profile-button"].className = "pill";
-                    this.id["courses-button"].className = "pill active";
-                    this.id["profile-container"].className = "tab";
-                    this.id["courses-container"].className = "tab active";
-                } else {
-                    this.id["profile-button"].className = "pill active";
-                    this.id["courses-button"].className = "pill";
-                    this.id["profile-container"].className = "tab active";
-                    this.id["courses-container"].className = "tab";
-                }
+            togglePanel: function(name) {
+                this.activeTab = name;
             }
         }
     }
