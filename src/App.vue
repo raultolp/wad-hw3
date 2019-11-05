@@ -7,8 +7,11 @@
 </template>
 
 <script>
-    // import Course from './components/Course'
-    // import User from './components/User'
+    // import Course from './models/Course'
+    // import User from './models/User'
+    // import Plus from './components/Courses'
+    // import Plus from './components/Profile'
+    // import Plus from './components/Plus'
     import Header from './components/Header'
     import Footer from "./components/Footer";
     import Content from "./components/Content";
@@ -39,13 +42,11 @@
         padding-bottom: 110px;
     }
 
-
     #profile div:not(.clear-fix) {
         height: 190px;
         float: left;
         position: relative;
     }
-
 
     #profile .avatar img {
         width: 180px;
@@ -83,5 +84,4 @@
         padding: 8px 12px;
         border: 1px solid #cbcbcb;
     }
-
 </style>
