@@ -51,7 +51,7 @@
                             <input class="input" type="number" min="1" max="8" placeholder="Semester" id="semester">
                             <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade">
                             <button class="green-button" id="save-course" @click="submitForm">Save</button>
-                            <button class="grey-button" id="cancel-course" @click="isShowing ^= true">Cancel</button>
+                            <button class="grey-button" id="cancel-course" @click="isShowing ^= true; removeInfo()">Cancel</button>
 <!--                            </form>-->
                         </span>
                     </div>
@@ -80,6 +80,11 @@
         methods: {
             togglePanel: function (name) {
                 this.activeTab = name;
+            },
+            removeInfo() {
+                document.getElementById('title').value = "";
+                document.getElementById('semester').value = "";
+                document.getElementById('grade').value = "";
             },
             submitForm() { // TODO see ei tööta
                 this.courses.add(new Course(this.title, this.semester, this.grade));
