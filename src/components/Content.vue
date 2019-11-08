@@ -45,11 +45,14 @@
                     <div>
                         <button id="add-course-button" class="blue-button" @click="isShowing ^= true">+</button>
                         <span v-show="isShowing" id="add-course">
+<!--                            TODO-->
+<!--                            <form id="add-course-form" @submit="submitForm">-->
                             <input class="input" type="text" placeholder="Course title" id="title">
                             <input class="input" type="number" min="1" max="8" placeholder="Semester" id="semester">
                             <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade">
-                            <button class="green-button" id="save-course">Save</button>
-                            <button class="grey-button" id="cancel-course">Cancel</button>
+                            <button class="green-button" id="save-course" @click="submitForm">Save</button>
+                            <button class="grey-button" id="cancel-course" @click="isShowing ^= true">Cancel</button>
+<!--                            </form>-->
                         </span>
                     </div>
                 </div>
@@ -63,12 +66,12 @@
 </template>
 
 <script>
-    // import Course from './models/Course'
-    // import User from './models/User'
+    import Course from "../models/Course";
+
     export default {
         name: "Content",
         el: "#add-course",
-        data: function () {
+        data: () => {
             return {
                 activeTab: "profile",
                 isShowing: false,
@@ -77,7 +80,13 @@
         methods: {
             togglePanel: function (name) {
                 this.activeTab = name;
-            }
+            },
+            submitForm() { // TODO see ei tööta
+                this.courses.add(new Course(this.title, this.semester, this.grade));
+                this.title = "";
+                this.semester = "";
+                this.grade = "";
+            },
         },
         props: {
             user: Object,
