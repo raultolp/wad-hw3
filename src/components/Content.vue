@@ -22,6 +22,7 @@
                 </div>
                 <div id="courses-container" :class="{active: this.activeTab === 'courses'}" class="tab">
                     <h1 class="title">Courses</h1>
+                    <span>
                     <table id="courses">
                         <thead>
                         <tr>
@@ -40,19 +41,17 @@
                         </tr>
                         </tbody>
                     </table>
+                    </span>
                     <br>
                     <br>
                     <div>
                         <button id="add-course-button" class="blue-button" @click="isShowing ^= true">+</button>
                         <span v-show="isShowing" id="add-course">
-<!--                            TODO-->
-<!--                            <form id="add-course-form" @submit="submitForm">-->
-                            <input class="input" type="text" placeholder="Course title" id="title">
-                            <input class="input" type="number" min="1" max="8" placeholder="Semester" id="semester">
-                            <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade">
-                            <button class="green-button" id="save-course" @click="submitForm">Save</button>
-                            <button class="grey-button" id="cancel-course" @click="isShowing ^= true; removeInfo()">Cancel</button>
-<!--                            </form>-->
+                            <input class="input" type="text" placeholder="Course title" v-model="title">
+                            <input class="input" type="number" min="1" max="8" placeholder="Semester" v-model="semester">
+                            <input class="input" type="number" min="0" max="100" placeholder="Grade" v-model="grade">
+                            <button class="green-button" id="save-course" @click="addCourse(true)">Save</button>
+                            <button class="grey-button" id="cancel-course" @click="addCourse(false)">Cancel</button>
                         </span>
                     </div>
                 </div>
@@ -70,27 +69,28 @@
 
     export default {
         name: "Content",
-        el: "#add-course",
+        // el: "#add-course",
+
         data: () => {
             return {
                 activeTab: "profile",
                 isShowing: false,
+                title: "",
+                semester: "",
+                grade: "",
             }
         },
         methods: {
             togglePanel: function (name) {
                 this.activeTab = name;
             },
-            removeInfo() {
-                document.getElementById('title').value = "";
-                document.getElementById('semester').value = "";
-                document.getElementById('grade').value = "";
-            },
-            submitForm() { // TODO see ei tööta
-                this.courses.add(new Course(this.title, this.semester, this.grade));
+            addCourse: function (add) {
+                if (add === true)
+                    this.courses.push(new Course(this.title, this.semester, this.grade));
                 this.title = "";
                 this.semester = "";
                 this.grade = "";
+                this.isShowing = false;
             },
         },
         props: {
