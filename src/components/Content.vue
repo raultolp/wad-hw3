@@ -9,13 +9,13 @@
                         </div>
                         <div class="info">
                             <ul>
-                                <li id="name">John Doe</li>
-                                <li id="birthdate">11/10/1990</li>
-                                <li id="faculty">Software Engineering</li>
+                                <li id="name">{{user.firstname}} {{user.lastname}}</li>
+                                <li id="birthdate">{{user.birthdate}}</li>
+                                <li id="faculty">{{user.faculty}}</li>
                             </ul>
                         </div>
                         <div id="gpa">
-                            <strong>2.75</strong>
+                            <strong>{{user.gpa}}</strong>
                         </div>
                         <div class="clear-fix"></div>
                     </div>
@@ -32,29 +32,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Agile software development</td>
-                            <td>1</td>
-                            <td>82</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>System modeling</td>
-                            <td>1</td>
-                            <td>85</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Object-oriented programming</td>
-                            <td>2</td>
-                            <td>99</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Estonian language Level A2</td>
-                            <td>2</td>
-                            <td>65</td>
+                        <tr v-for="(course, index) in courses" :key="index">
+                            <td>{{index + 1}}</td>
+                            <td>{{course.title}}</td>
+                            <td>{{course.semester}}</td>
+                            <td>{{course.grade}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -96,9 +78,12 @@
             togglePanel: function (name) {
                 this.activeTab = name;
             }
+        },
+        props: {
+            user: Object,
+            courses: Array
         }
     }
-
 </script>
 
 <style scoped>
