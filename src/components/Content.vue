@@ -81,6 +81,8 @@
 </template>
 
 <script>
+    // import Course from './models/Course'
+    // import User from './models/User'
     export default {
         name: "Content",
         el: "#add-course",

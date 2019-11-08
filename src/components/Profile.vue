@@ -56,5 +56,4 @@
     .content .tab.active {
         display: block;
     }
-
 </style>

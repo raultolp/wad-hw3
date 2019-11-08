@@ -7,18 +7,29 @@
 </template>
 
 <script>
-    // import Course from './models/Course'
-    // import User from './models/User'
     // import Plus from './components/Courses'
     // import Plus from './components/Profile'
     // import Plus from './components/Plus'
     import Header from './components/Header'
     import Footer from "./components/Footer";
     import Content from "./components/Content";
+    import Course from './models/Course'
+    import User from './models/User'
 
     export default {
         name: 'app',
         components: {Content, Footer, Header },
+        data: () => {
+            let userData = new User("John", "Doe", 11/10/1990, "Software Engineering", 2.75);
+            return {
+                coursesArray: [
+                    new Course("Agile software development", 1, 82),
+                    new Course("System modeling", 1, 85),
+                    new Course("Object-oriented programming", 2, 99),
+                    new Course("Estonian language Level A2", 2, 65)
+                ]
+            }
+        }
     }
 </script>
 
