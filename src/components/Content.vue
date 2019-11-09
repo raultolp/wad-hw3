@@ -85,17 +85,21 @@
                 this.activeTab = name;
             },
             addCourse: function (add) {
-                if (add === true)
+                if (add === true) {
                     this.courses.push(new Course(this.title, this.semester, this.grade));
+                    this.$props.calculate();
+                }
                 this.title = "";
                 this.semester = "";
                 this.grade = "";
                 this.isShowing = false;
+
             },
         },
         props: {
             user: Object,
-            courses: Array
+            courses: Array,
+            calculate: Function
         }
     }
 </script>

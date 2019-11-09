@@ -1,7 +1,7 @@
 <template>
     <main id="app">
         <Header/>
-        <Content :user="user" :courses="courses"/>
+        <Content :user="user" :courses="courses" :calculate="calculateGPA"/>
         <Footer/>
     </main>
 </template>
@@ -18,6 +18,17 @@
 
     export default {
         name: 'app',
+        methods: {
+            calculateGPA: function () {
+                let numberOfCourses = this.courses.length
+                let totalPoints = 0.0
+                for (let i = 0; i < numberOfCourses; i++) {
+                    let points = this.courses[i].grade
+                    totalPoints+=(points>90)? 4: (points>80)? 3: (points>70)? 2: (points>60)? 1: (points>50)? 0.5: 0;
+                }
+                this.user.gpa=totalPoints/numberOfCourses.toFixed(2)
+            }
+        },
         components: {Content, Footer, Header },
         data: () => {
             return {
