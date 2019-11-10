@@ -1,3 +1,5 @@
+
+
 <template>
     <main id="app">
         <Header/>
@@ -26,7 +28,7 @@
                     let points = this.courses[i].grade
                     totalPoints+=(points>90)? 4: (points>80)? 3: (points>70)? 2: (points>60)? 1: (points>50)? 0.5: 0;
                 }
-                this.user.gpa=totalPoints/numberOfCourses.toFixed(2)
+                this.user.gpa=(totalPoints/numberOfCourses).toFixed(2)
             }
         },
         components: {Content, Footer, Header },
