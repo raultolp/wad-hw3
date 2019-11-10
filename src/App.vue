@@ -1,4 +1,8 @@
-
+<!--
+Õie Renata Siimon, 97532
+Renet Rämman, B80534
+Raul Tölp, 91999
+-->
 
 <template>
     <main id="app">
